@@ -1,11 +1,12 @@
 import express from "express";
-import Product from "./product.model.js";
 import mongoose from "mongoose";
+import { isUser } from "./authentication.middleware.js";
+import Product from "./product.model.js";
 
 const router = express.Router();
 
 // ? add product
-router.post("/product/add", async (req, res) => {
+router.post("/product/add", isUser, async (req, res) => {
   //   extract new product from req.body
   const newProduct = req.body;
 
@@ -27,7 +28,7 @@ router.get("/product/list", async (req, res) => {
 });
 
 // ? get single product
-router.get("/product/detail/:id", async (req, res) => {
+router.get("/product/detail/:id", isUser, async (req, res) => {
   //  extract product id from req.params
   const productId = req.params.id;
 
@@ -54,7 +55,7 @@ router.get("/product/detail/:id", async (req, res) => {
 });
 
 // ? delete a product
-router.delete("/product/delete/:id", async (req, res) => {
+router.delete("/product/delete/:id", isUser, async (req, res) => {
   // extract product id from req.params
   const productId = req.params.id;
 
@@ -82,7 +83,7 @@ router.delete("/product/delete/:id", async (req, res) => {
 });
 
 // ?  edit product
-router.put("/product/edit/:id", async (req, res) => {
+router.put("/product/edit/:id", isUser, async (req, res) => {
   // extract product id from req.params
   const productId = req.params.id;
 
