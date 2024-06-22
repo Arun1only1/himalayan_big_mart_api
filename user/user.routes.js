@@ -7,6 +7,7 @@ const router = express.Router();
 
 // ? register user
 router.post("/user/register", async (req, res) => {
+  console.log("hello");
   // extract new user from req.body
   const newUser = req.body;
 
@@ -20,7 +21,7 @@ router.post("/user/register", async (req, res) => {
 
   // hash password
   const plainPassword = newUser.password;
-  const saltRound = 31; // to add randomness
+  const saltRound = 10; // to add randomness
   const hashedPassword = await bcrypt.hash(plainPassword, saltRound);
 
   // replace plain password by hashed password

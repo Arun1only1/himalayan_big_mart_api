@@ -21,7 +21,7 @@ router.post("/product/add", isUser, async (req, res) => {
 router.get("/product/list", async (req, res) => {
   const products = await Product.find(
     {},
-    { name: 1, price: 1, brand: 1, quantity: 1, image: 1 }
+    { name: 1, price: 1, brand: 1, image: 1, description: 1 }
   );
 
   return res.status(200).send({ message: "success", productList: products });
